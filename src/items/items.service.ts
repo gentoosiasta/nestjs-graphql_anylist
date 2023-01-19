@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateItemInput } from './dto/create-item.input';
-import { UpdateItemInput } from './dto/update-item.input';
+import { CreateItemInput, UpdateItemInput } from './dto/inputs';
 
 @Injectable()
 export class ItemsService {
   create(createItemInput: CreateItemInput) {
-    return 'This action adds a new item';
+    return '';
   }
 
   findAll() {
