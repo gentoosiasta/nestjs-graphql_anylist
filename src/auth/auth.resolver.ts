@@ -4,11 +4,10 @@ import { User } from 'src/users/entities/user.entity';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { SigninInput, SignupInput } from './dto/inputs';
-import { ValidRoles } from './enums/valid-roles.enum';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AuthResponse } from './types/auth-response.type';
 
-@Resolver()
+@Resolver(() => AuthResponse)
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
