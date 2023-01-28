@@ -30,8 +30,11 @@ export class UsersResolver {
   }
 
   @Mutation(() => User, { name: 'updateUser' })
-  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.usersService.update(updateUserInput.id, updateUserInput);
+  async updateUser(
+    @Args('updateUserInput') updateUserInput: UpdateUserInput,
+    @CurrentUser([ValidRoles.admin]) user: User,
+  ): Promise<User> {
+    return this.usersService.update(updateUserInput.id, updateUserInput, user);
   }
 
   @Mutation(() => User, { name: 'blockUser' })

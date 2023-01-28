@@ -62,9 +62,12 @@ input UpdateItemInput {
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  email: String
+  fullName: String
+  password: String
+  id: ID!
+  roles: [validRoles!]
+  isActive: Boolean
 }
 
 input SignupInput {
