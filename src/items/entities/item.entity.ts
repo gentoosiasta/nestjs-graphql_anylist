@@ -12,9 +12,9 @@ export class Item {
   @Column()
   name: string;
 
-  @Field(() => Int)
-  @Column()
-  quantity: number;
+  // @Field(() => Int)
+  // @Column()
+  // quantity: number;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
