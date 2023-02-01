@@ -11,6 +11,7 @@ type User {
   lastUpdateBy: User
   items: [Item!]!
   password: String!
+  itemCount: Int!
 }
 
 type Item {
