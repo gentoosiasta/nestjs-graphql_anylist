@@ -13,3 +13,4 @@
 5. Run
   ```tarn start:dev```
 6. Navigate to ```http://localhost:3000/graphql```
+7. Execute the "executeSeed" __mutation__, to fill database
