@@ -9,8 +9,8 @@ type User {
   roles: [String!]!
   isActive: Boolean!
   lastUpdateBy: User
-  items: [Item!]!
   password: String!
+  items(offset: Int = 0, limit: Int = 10, search: String): [Item!]!
   itemCount: Int!
 }
 
