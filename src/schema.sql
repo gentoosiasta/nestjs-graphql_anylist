@@ -34,6 +34,12 @@ type AuthResponse {
   user: User!
 }
 
+type ListItem {
+  id: ID!
+  quantity: Float!
+  completed: Boolean!
+}
+
 type Query {
   revalidate: AuthResponse!
   users(roles: [validRoles!] = []): [User!]!
@@ -42,6 +48,7 @@ type Query {
   item(id: ID!): Item!
   lists(offset: Int = 0, limit: Int = 10, search: String): [List!]!
   list(id: Int!): List!
+  listItem(id: Int!): ListItem!
 }
 
 enum validRoles {
@@ -64,6 +71,9 @@ type Mutation {
 
   """Execute database construction"""
   executeSeed: Boolean!
+  createListItem(createListItemInput: CreateListItemInput!): ListItem!
+  updateListItem(updateListItemInput: UpdateListItemInput!): ListItem!
+  removeListItem(id: Int!): ListItem!
 }
 
 input SignupInput {
@@ -104,4 +114,15 @@ input CreateListInput {
 input UpdateListInput {
   name: String
   id: ID!
+}
+
+input CreateListItemInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateListItemInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
