@@ -23,8 +23,8 @@ export class ListItemService {
     return this.listItemRepository.save(newListItem);
   }
 
-  findAll() {
-    return `This action returns all listItem`;
+  findAll(): Promise<ListItem[]> {
+    return this.listItemRepository.find();
   }
 
   findOne(id: number) {
