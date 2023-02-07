@@ -48,8 +48,8 @@ export class ListItemService {
     return queryBuilder.getMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} listItem`;
+  findOne(id: string): Promise<ListItem> {
+    return this.listItemRepository.findOneBy({ id });
   }
 
   update(id: number, updateListItemInput: UpdateListItemInput) {
