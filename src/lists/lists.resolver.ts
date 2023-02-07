@@ -18,6 +18,7 @@ import { User } from 'src/users/entities/user.entity';
 import { PaginationArgs, SearchArgs } from 'src/common/dtos/args';
 import { ListItem } from 'src/list-item/entities/list-item.entity';
 import { ListItemService } from 'src/list-item/list-item.service';
+import { Item } from 'src/items/entities/item.entity';
 
 @Resolver(() => List)
 @UseGuards(JwtAuthGuard)
@@ -73,7 +74,16 @@ export class ListsResolver {
   }
 
   @ResolveField(() => [ListItem], { name: 'items' })
-  async getListItems(@Parent() list: List): Promise<ListItem[]> {
-    return this.listItemService.findAll();
+  async getListItems(
+    @Parent() list: List,
+    @Args() paginationArgs: PaginationArgs,
+    @Args() searchArgs: SearchArgs,
+  ): Promise<ListItem[]> {
+    return this.listItemService.findAll(list, paginationArgs, searchArgs);
+  }
+
+  @ResolveField(() => Int, { name: 'totalItems' })
+  async countItemsByList(@Parent() list: List): Promise<number> {
+    return this.listItemService.itemCountByList(list);
   }
 }

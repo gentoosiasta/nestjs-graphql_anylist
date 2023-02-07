@@ -21,7 +21,8 @@ type List {
   name: String!
   user: User!
   listItem: [ListItem!]!
-  items: [ListItem!]!
+  items(offset: Int = 0, limit: Int = 10, search: String): [ListItem!]!
+  totalItems: Int!
 }
 
 type ListItem {
@@ -53,7 +54,6 @@ type Query {
   item(id: ID!): Item!
   lists(offset: Int = 0, limit: Int = 10, search: String): [List!]!
   list(id: Int!): List!
-  listItem: [ListItem!]!
 }
 
 enum validRoles {
