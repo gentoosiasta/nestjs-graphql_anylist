@@ -9,11 +9,7 @@ import { Item } from 'src/items/entities/item.entity';
 
 @Module({
   providers: [ListsResolver, ListsService],
-  imports: [
-    TypeOrmModule.forFeature([List, Item]),
-    ListItemModule,
-    ItemsModule,
-  ],
+  imports: [TypeOrmModule.forFeature([List]), ListItemModule, ItemsModule],
   exports: [ListsService, TypeOrmModule],
 })
 export class ListsModule {}

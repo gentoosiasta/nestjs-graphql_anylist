@@ -52,11 +52,28 @@ export class ListItemService {
     return this.listItemRepository.findOneBy({ id });
   }
 
-  update(id: number, updateListItemInput: UpdateListItemInput) {
-    return `This action updates a #${id} listItem`;
+  async update(
+    id: string,
+    updateListItemInput: UpdateListItemInput,
+  ): Promise<ListItem> {
+    const { listId, itemId, ...rest } = updateListItemInput;
+
+    const queryBuilder = this.listItemRepository
+      .createQueryBuilder()
+      .update()
+      .set(rest)
+      .where('id = :id', { id });
+
+    if (listId) queryBuilder.set({ list: { id: listId } });
+
+    if (listId) queryBuilder.set({ item: { id: itemId } });
+
+    await queryBuilder.execute();
+
+    return this.findOne(id);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} listItem`;
   }
 
